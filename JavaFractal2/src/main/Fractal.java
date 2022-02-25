@@ -40,8 +40,8 @@ public class Fractal extends Canvas{
 		for (int i = 0; i < maxItt; i++) {
 			
 			nextItt = comPow(nextItt, 2);
-			nextItt[0] += pixel[0] + modulate / 50;
-			nextItt[1] += pixel[1] + modulate / 50;
+			nextItt[0] += pixel[0];
+			nextItt[1] += pixel[1];
 			if (Math.pow(nextItt[0], 2) + Math.pow(nextItt[1], 2) >= pxDensity) {
                 float colorNum = 60;
                 i = (int)((i + Math.abs(modulate)) % colorNum);
