@@ -26,7 +26,6 @@ public abstract class Canvas {
 	public void setup() {
 		main.colorMode(PApplet.HSB, colorRange);
 		main.background(0, 0, colorRange);
-		main.frameRate(100000);
 	}
 	
 	abstract void mouseHandler(float x, float y);
