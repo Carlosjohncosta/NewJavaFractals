@@ -6,7 +6,7 @@ public class Fractal extends Canvas{
 	double color = 0;
 	int maxItt;
 	float modulate = 0;
-	float zoom = (float)5;
+	float zoom = (float)50;
 	float preXOffset = 0;
 	float xOffset = 0;
 	float yOffset = 0;
@@ -32,7 +32,7 @@ public class Fractal extends Canvas{
 					saveState[(int)(x + xLen)][(int)(y + yLen)] = checkPx(new float[] { x, y });
 				}
 			}
-			smooth();
+			//smooth();
 			found = true;
 		} else {
 			for (float x = -xLen; x < xLen; x++) {
@@ -45,7 +45,7 @@ public class Fractal extends Canvas{
 					}
 				}
 			}
-			//modulate+= 1;
+			modulate+= 1;
 		}
 	}
 	
@@ -70,8 +70,7 @@ public class Fractal extends Canvas{
 		pixel = translatePx(pixel);
 		float[] nextItt = pixel;
 		for (int i = 0; i < maxItt; i++) {
-			nextItt = Complex.cos(nextItt);
-			nextItt = Complex.add(pixel, nextItt);
+			nextItt = Complex.mut(nextItt, Complex.sin(nextItt));
 			if (Math.pow(nextItt[0], 2) + Math.pow(nextItt[1], 2) >= pxDensity) {
 				return i;
 			}

@@ -8,7 +8,7 @@ public abstract class Canvas {
 	int pxDensity;
 	float xLen;
 	float yLen;
-	int colorRange = 100;
+	int colorRange = 30;
 	PApplet main;
 	
 	public Canvas(PApplet main, float[] ratio, int pxDensity) {
