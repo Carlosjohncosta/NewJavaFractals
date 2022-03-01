@@ -1,18 +1,19 @@
 package main;
 import processing.core.*;
 
-public class Fractal extends Canvas{
+public class Fractal extends Canvas {
 	PApplet main;
 	double color = 0;
 	int maxItt;
 	float modulate = 0;
-	float zoom = (float)50;
+	float zoom = (float)5;
 	float preXOffset = 0;
 	float xOffset = 0;
 	float yOffset = 0;
 	float[][] saveState = new float[(int)ratio[0] * pxDensity][(int)ratio[1] * pxDensity];
-	public float colorNum = 30;
+	public float colorNum = 100;
 	boolean found = false;
+	float[] juliaVal = new float[] {0, 0};
 	
 	Fractal(PApplet main, float[] ratio, int pxDensity, int maxItt) {
 		super(main, ratio, pxDensity);
@@ -53,30 +54,19 @@ public class Fractal extends Canvas{
 		return new float[] {(zoom * (pixel[0] + xOffset)) / pxDensity, (zoom * (pixel[1] + yOffset)) / pxDensity};
 	}
 	
-	/*private float checkPx(float[] pixel) {
-		pixel = translatePx(pixel);
-		float[] nextItt = pixel;
-		for (int i = 0; i < maxItt; i++) {
-			nextItt = Complex.pow(nextItt, 2);
-			nextItt = Complex.add(nextItt, pixel);
-			if (Math.pow(nextItt[0], 2) + Math.pow(nextItt[1], 2) >= pxDensity) {
-				return i;
-			}
-		}
-		return -1;
-	}*/
 	
 	private float checkPx(float[] pixel) {
 		pixel = translatePx(pixel);
 		float[] nextItt = pixel;
 		for (int i = 0; i < maxItt; i++) {
-			nextItt = Complex.mut(nextItt, Complex.sin(nextItt));
+			nextItt = Complex.mut(pixel, Complex.cos(nextItt));
 			if (Math.pow(nextItt[0], 2) + Math.pow(nextItt[1], 2) >= pxDensity) {
 				return i;
 			}
 		}
 		return -1;
 	}
+	
 	
 	private float getColor(float itterations) {
         return (colorRange * ((int)(itterations + Math.abs(modulate)) % colorNum) / colorNum);

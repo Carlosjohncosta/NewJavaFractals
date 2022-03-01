@@ -22,13 +22,13 @@ public final class Complex {
 	}
 	
 	static float[] div(float[] comNum, float[] comNum2) {
-		return new float[] {((comNum[0] * comNum2[0]) + (comNum[1] * comNum2[1])) / (comNum2[0] * comNum2[1]),
-							((comNum2[1] * comNum2[0]) - (comNum[0] * comNum2[1])) / (comNum2[0] * comNum2[1])};
+		return new float[] {((comNum[0] * comNum2[0]) + (comNum[1] * comNum2[1])) / (float)(Math.pow(comNum2[0], 2) + Math.pow(comNum2[1], 2)),
+							((comNum[1] * comNum2[0]) - (comNum[0] * comNum2[1])) / (float)(Math.pow(comNum2[0], 2) + Math.pow(comNum2[1], 2))};
 	}
 	
 	static float[] cos(float[] comNum) {
 		return new float[] {(float)Math.cos(comNum[0]) * (float)Math.cosh(comNum[1]),
-							(float)Math.sin(comNum[0]) * (float)Math.sinh(comNum[1])};
+							-(float)Math.sin(comNum[0]) * (float)Math.sinh(comNum[1])};
 	}
 	
 	static float[] sin(float[] comNum) {
@@ -47,6 +47,6 @@ public final class Complex {
 	static float[] sqrt(float[] comNum) {
 		float absVal = (float)Math.sqrt(Math.pow(comNum[0], 2) + Math.pow(comNum[1], 2));
 		return new float[] {(float)Math.sqrt((absVal + comNum[0]) / 2), 
-							(float)Math.sqrt((absVal - comNum[0]) / 2)};
+							Math.signum(comNum[1]) * (float)Math.sqrt((absVal - comNum[0]) / 2)};
 	}
 }
