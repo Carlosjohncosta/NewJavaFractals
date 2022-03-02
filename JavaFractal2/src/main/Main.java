@@ -1,7 +1,7 @@
 package main;
 import processing.core.*;
 
-public class Main extends PApplet{
+public class Main extends PApplet {
 	Canvas fractal = new Fractal(this, new float[] {4, 2}, 200, 50);
 	
 	public static void main(String[] args) {

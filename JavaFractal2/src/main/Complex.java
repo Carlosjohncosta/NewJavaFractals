@@ -3,7 +3,6 @@ package main;
 public final class Complex {
 	private Complex() {}
 	
-	
 	static float[] add(float[] comNum, float[] comNum2) {
 		return new float[] {comNum[0] + comNum2[0], comNum[1] + comNum2[1]};
 	}
